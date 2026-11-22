@@ -1,6 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'me.jessyan.autosize'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
 
@@ -27,4 +32,3 @@ android {
 dependencies {
 }
 
-apply from: 'bintray.gradle'

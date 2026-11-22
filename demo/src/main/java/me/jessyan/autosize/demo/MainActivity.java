@@ -20,7 +20,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,21 +31,20 @@ import me.jessyan.autosize.internal.CustomAdapt;
 
 /**
  * ================================================
- * 本框架核心原理来自于 <a href="https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA">今日头条官方适配方案</a>
- * 此方案不光可以适配 {@link Activity}, 这个 {@link Activity} 下的所有 {@link Fragment}、{@link Dialog}、{@link View} 都会自动适配
+ * 鏈鏋舵牳蹇冨師鐞嗘潵鑷簬 <a href="https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA">浠婃棩澶存潯瀹樻柟閫傞厤鏂规</a>
+ * 姝ゆ柟妗堜笉鍏夊彲浠ラ€傞厤 {@link Activity}, 杩欎釜 {@link Activity} 涓嬬殑鎵€鏈?{@link Fragment}銆亄@link Dialog}銆亄@link View} 閮戒細鑷姩閫傞厤
  * <p>
- * {@link MainActivity} 是以屏幕宽度为基准进行适配的, 并且使用的是在 AndroidManifest 中填写的全局设计图尺寸 360 * 640
- * 不懂什么叫基准的话, 请看 {@link AutoSizeConfig#isBaseOnWidth}) 的注释, AndroidAutoSize 默认全局以屏幕宽度为基准进行适配
- * 如果想更改为全局以屏幕高度为基准进行适配, 请在 {@link BaseApplication} 中按注释中更改, 为什么强调全局？
- * 因为 AndroidAutoSize 允许每个 {@link Activity} 可以自定义适配参数, 自定义适配参数通过实现 {@link CustomAdapt}
- * 如果不自定义适配参数就会使用全局的适配参数, 全局适配参数在 {@link BaseApplication} 中按注释设置
+ * {@link MainActivity} 鏄互灞忓箷瀹藉害涓哄熀鍑嗚繘琛岄€傞厤鐨? 骞朵笖浣跨敤鐨勬槸鍦?AndroidManifest 涓～鍐欑殑鍏ㄥ眬璁捐鍥惧昂瀵?360 * 640
+ * 涓嶆噦浠€涔堝彨鍩哄噯鐨勮瘽, 璇风湅 {@link AutoSizeConfig#isBaseOnWidth}) 鐨勬敞閲? AndroidAutoSize 榛樿鍏ㄥ眬浠ュ睆骞曞搴︿负鍩哄噯杩涜閫傞厤
+ * 濡傛灉鎯虫洿鏀逛负鍏ㄥ眬浠ュ睆骞曢珮搴︿负鍩哄噯杩涜閫傞厤, 璇峰湪 {@link BaseApplication} 涓寜娉ㄩ噴涓洿鏀? 涓轰粈涔堝己璋冨叏灞€锛? * 鍥犱负 AndroidAutoSize 鍏佽姣忎釜 {@link Activity} 鍙互鑷畾涔夐€傞厤鍙傛暟, 鑷畾涔夐€傞厤鍙傛暟閫氳繃瀹炵幇 {@link CustomAdapt}
+ * 濡傛灉涓嶈嚜瀹氫箟閫傞厤鍙傛暟灏变細浣跨敤鍏ㄥ眬鐨勯€傞厤鍙傛暟, 鍏ㄥ眬閫傞厤鍙傛暟鍦?{@link BaseApplication} 涓寜娉ㄩ噴璁剧疆
  * <p>
  * Created by JessYan on 2018/8/9 17:05
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-//实现 CancelAdapt 即可取消当前 Activity 的屏幕适配, 并且这个 Activity 下的所有 Fragment 和 View 都会被取消适配
+//瀹炵幇 CancelAdapt 鍗冲彲鍙栨秷褰撳墠 Activity 鐨勫睆骞曢€傞厤, 骞朵笖杩欎釜 Activity 涓嬬殑鎵€鏈?Fragment 鍜?View 閮戒細琚彇娑堥€傞厤
 //public class MainActivity extends AppCompatActivity implements CancelAdapt {
 public class MainActivity extends AppCompatActivity {
 
@@ -56,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 需要注意的是暂停 AndroidAutoSize 后, AndroidAutoSize 只是停止了对后续还没有启动的 {@link Activity} 进行适配的工作
-     * 但对已经启动且已经适配的 {@link Activity} 不会有任何影响
-     *
+     * 闇€瑕佹敞鎰忕殑鏄殏鍋?AndroidAutoSize 鍚? AndroidAutoSize 鍙槸鍋滄浜嗗鍚庣画杩樻病鏈夊惎鍔ㄧ殑 {@link Activity} 杩涜閫傞厤鐨勫伐浣?     * 浣嗗宸茬粡鍚姩涓斿凡缁忛€傞厤鐨?{@link Activity} 涓嶄細鏈変换浣曞奖鍝?     *
      * @param view {@link View}
      */
     public void stop(View view) {
@@ -67,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 需要注意的是重新启动 AndroidAutoSize 后, AndroidAutoSize 只是重新开始了对后续还没有启动的 {@link Activity} 进行适配的工作
-     * 但对已经启动且在 stop 期间未适配的 {@link Activity} 不会有任何影响
-     *
+     * 闇€瑕佹敞鎰忕殑鏄噸鏂板惎鍔?AndroidAutoSize 鍚? AndroidAutoSize 鍙槸閲嶆柊寮€濮嬩簡瀵瑰悗缁繕娌℃湁鍚姩鐨?{@link Activity} 杩涜閫傞厤鐨勫伐浣?     * 浣嗗宸茬粡鍚姩涓斿湪 stop 鏈熼棿鏈€傞厤鐨?{@link Activity} 涓嶄細鏈変换浣曞奖鍝?     *
      * @param view {@link View}
      */
     public void restart(View view) {
@@ -78,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 跳转到 {@link CustomAdaptActivity}, 展示项目内部的 {@link Activity} 自定义适配参数的用法
-     *
+     * 璺宠浆鍒?{@link CustomAdaptActivity}, 灞曠ず椤圭洰鍐呴儴鐨?{@link Activity} 鑷畾涔夐€傞厤鍙傛暟鐨勭敤娉?     *
      * @param view {@link View}
      */
     public void goCustomAdaptActivity(View view) {
@@ -87,14 +81,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 跳转到三方库的 {@link Activity}, 展示项目外部某些三方库的 {@link Activity} 自定义适配参数的用法
-     * 跳转前要先在 {@link BaseApplication#customAdaptForExternal()} 中给外部的三方库 {@link Activity} 自定义适配参数
+     * 璺宠浆鍒颁笁鏂瑰簱鐨?{@link Activity}, 灞曠ず椤圭洰澶栭儴鏌愪簺涓夋柟搴撶殑 {@link Activity} 鑷畾涔夐€傞厤鍙傛暟鐨勭敤娉?     * 璺宠浆鍓嶈鍏堝湪 {@link BaseApplication#customAdaptForExternal()} 涓粰澶栭儴鐨勪笁鏂瑰簱 {@link Activity} 鑷畾涔夐€傞厤鍙傛暟
      *
      * @param view {@link View}
      */
     public void goThirdLibraryActivity(View view) {
-        //这里就是随便找个三方库的 Activity, 测试下适配三方库页面的功能是否可用
-        //以下代码就是为了启动这个三方库的 Activity, 不必在意
+        //杩欓噷灏辨槸闅忎究鎵句釜涓夋柟搴撶殑 Activity, 娴嬭瘯涓嬮€傞厤涓夋柟搴撻〉闈㈢殑鍔熻兘鏄惁鍙敤
+        //浠ヤ笅浠ｇ爜灏辨槸涓轰簡鍚姩杩欎釜涓夋柟搴撶殑 Activity, 涓嶅繀鍦ㄦ剰
         Intent intent = new Intent(getApplicationContext(), DefaultErrorActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("cat.ereza.customactivityoncrash.EXTRA_CONFIG", CaocConfig.Builder.create().get());
@@ -102,3 +95,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
